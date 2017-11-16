@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -17,7 +18,7 @@ import android.view.ViewGroup;
  * Use the {@link InfoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InfoFragment extends Fragment {
+public class InfoFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,6 +29,11 @@ public class InfoFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    //Buttons to switch from a fragment to another in the MainActivity
+    private Button buttonList;
+    private Button buttonInfo;
+    private Button buttonMap;
 
     public InfoFragment() {
         // Required empty public constructor
@@ -64,13 +70,28 @@ public class InfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_info, container, false);
+
+
+
+
+        View view = inflater.inflate(R.layout.fragment_info, container, false);
+
+        //Initialize buttons to switch between fragments in the MainCActivity
+        buttonList = (Button)view.findViewById(R.id.buttonList);
+        buttonList.setOnClickListener(this);
+        buttonInfo = (Button) view.findViewById(R.id.buttonInfo);
+        buttonInfo.setOnClickListener(this);
+        buttonMap = (Button) view.findViewById(R.id.buttonMap);
+        buttonMap.setOnClickListener(this);
+
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.callListFragment();
         }
     }
 
@@ -91,6 +112,24 @@ public class InfoFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.buttonList :
+                //Replace the fragment with ListFragment
+                mListener.callListFragment();
+                break;
+            case R.id.buttonInfo :
+                break;
+            case R.id.buttonMap :
+                //Replace the fragment with MapFragment
+                mListener.callMapFragment();
+                break;
+
+
+        }
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -102,7 +141,7 @@ public class InfoFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void callMapFragment();
+        void callListFragment();
     }
 }
