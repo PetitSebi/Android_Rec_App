@@ -123,11 +123,9 @@ public class ListFragment extends Fragment implements View.OnClickListener{
                 mListener.callInfoFragment();
                 break;
             case R.id.buttonMap :
-                //Replace the fragment with MapFragment
-                mListener.callMapFragment();
+                //Call MapsActivity
+                mListener.callMapsActivity();
                 break;
-
-
         }
     }
 
@@ -146,6 +144,6 @@ public class ListFragment extends Fragment implements View.OnClickListener{
      */
     public interface OnFragmentInteractionListener {
         void callInfoFragment();
-        void callMapFragment();
+        void callMapsActivity();
     }
 }

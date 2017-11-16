@@ -122,11 +122,8 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
             case R.id.buttonInfo :
                 break;
             case R.id.buttonMap :
-                //Replace the fragment with MapFragment
-                mListener.callMapFragment();
+                //Call MapsActivity
                 break;
-
-
         }
     }
 
@@ -141,7 +138,6 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        void callMapFragment();
         void callListFragment();
     }
 }

@@ -44,12 +44,24 @@
         "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95eea025ca4f1bf47e657eb6bc8a2ea4\\res\\color\\switch_thumb_material_light.xml"
     },
     {
+        "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\common_google_signin_btn_text_dark.xml",
+        "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.0.1.aar\\2fa0fee5c40b2eacd732d28ae3ff4c18\\res\\color\\common_google_signin_btn_text_dark.xml"
+    },
+    {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_primary_text_disable_only_material_light.xml",
         "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95eea025ca4f1bf47e657eb6bc8a2ea4\\res\\color\\abc_primary_text_disable_only_material_light.xml"
     },
     {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_btn_colored_borderless_text_material.xml",
         "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95eea025ca4f1bf47e657eb6bc8a2ea4\\res\\color\\abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\common_google_signin_btn_text_light.xml",
+        "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.0.1.aar\\2fa0fee5c40b2eacd732d28ae3ff4c18\\res\\color\\common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\common_plus_signin_btn_text_light.xml",
+        "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.0.1.aar\\2fa0fee5c40b2eacd732d28ae3ff4c18\\res\\color\\common_plus_signin_btn_text_light.xml"
     },
     {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_btn_colored_text_material.xml",
@@ -66,6 +78,10 @@
     {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_hint_foreground_material_light.xml",
         "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95eea025ca4f1bf47e657eb6bc8a2ea4\\res\\color\\abc_hint_foreground_material_light.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\common_plus_signin_btn_text_dark.xml",
+        "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.0.1.aar\\2fa0fee5c40b2eacd732d28ae3ff4c18\\res\\color\\common_plus_signin_btn_text_dark.xml"
     },
     {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_primary_text_material_dark.xml",
