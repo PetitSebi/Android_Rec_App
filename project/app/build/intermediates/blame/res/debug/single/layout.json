@@ -1,23 +1,23 @@
 [
     {
-        "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
-        "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\bfaa70e4120d0339a770fca8fb6783a6\\res\\layout\\notification_template_part_chronometer.xml"
-    },
-    {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\tooltip.xml",
         "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95eea025ca4f1bf47e657eb6bc8a2ea4\\res\\layout\\tooltip.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\bfaa70e4120d0339a770fca8fb6783a6\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
         "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95eea025ca4f1bf47e657eb6bc8a2ea4\\res\\layout\\select_dialog_item_material.xml"
     },
     {
-        "merged": "D:\\ISMIN\\S5\\Android\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_multichoice_material.xml",
-        "source": "C:\\Users\\Valentin\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\3e7eca6296bb568f3a84f718f639444b\\res\\layout\\select_dialog_multichoice_material.xml"
-    },
-    {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
         "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95eea025ca4f1bf47e657eb6bc8a2ea4\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "D:\\ISMIN\\S5\\Android\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_multichoice_material.xml",
+        "source": "C:\\Users\\Valentin\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\3e7eca6296bb568f3a84f718f639444b\\res\\layout\\select_dialog_multichoice_material.xml"
     },
     {
         "merged": "D:\\ISMIN\\S5\\Android\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
@@ -56,12 +56,12 @@
         "source": "C:\\Users\\Valentin\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\3e7eca6296bb568f3a84f718f639444b\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
     },
     {
-        "merged": "D:\\ISMIN\\S5\\Android\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow_custom.xml",
-        "source": "C:\\Users\\Valentin\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\094cd76257ca882111c1d36f09cc49ca\\res\\layout\\notification_template_big_media_narrow_custom.xml"
-    },
-    {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
         "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95eea025ca4f1bf47e657eb6bc8a2ea4\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\ISMIN\\S5\\Android\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow_custom.xml",
+        "source": "C:\\Users\\Valentin\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\094cd76257ca882111c1d36f09cc49ca\\res\\layout\\notification_template_big_media_narrow_custom.xml"
     },
     {
         "merged": "D:\\ISMIN\\S5\\Android\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
@@ -156,12 +156,12 @@
         "source": "C:\\Users\\Valentin\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\98eacd0f893f877acbda2f29682f070d\\res\\layout\\notification_action_tombstone.xml"
     },
     {
-        "merged": "D:\\ISMIN\\S5\\Android\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
-        "source": "C:\\Users\\Valentin\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\3e7eca6296bb568f3a84f718f639444b\\res\\layout\\select_dialog_item_material.xml"
-    },
-    {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
         "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95eea025ca4f1bf47e657eb6bc8a2ea4\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "D:\\ISMIN\\S5\\Android\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
+        "source": "C:\\Users\\Valentin\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\3e7eca6296bb568f3a84f718f639444b\\res\\layout\\select_dialog_item_material.xml"
     },
     {
         "merged": "D:\\ISMIN\\S5\\Android\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
@@ -326,6 +326,10 @@
     {
         "merged": "D:\\ISMIN\\S5\\Android\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines_media.xml",
         "source": "C:\\Users\\Valentin\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\094cd76257ca882111c1d36f09cc49ca\\res\\layout\\notification_template_lines_media.xml"
+    },
+    {
+        "merged": "D:\\ISMIN\\S5\\Android\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_adapter.xml",
+        "source": "D:\\ISMIN\\S5\\Android\\Android_Rec_App\\project\\app\\src\\main\\res\\layout\\list_adapter.xml"
     },
     {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow_custom.xml",
