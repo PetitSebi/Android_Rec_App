@@ -16,10 +16,40 @@
             ]
         },
         {
+            "outputFile": "D:\\ISMIN\\S5\\Android\\Android_Rec_App\\project\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Valentin\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\3e7eca6296bb568f3a84f718f639444b\\res\\values-port\\values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\values-port\\values-port.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95eea025ca4f1bf47e657eb6bc8a2ea4\\res\\values-port\\values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\ISMIN\\S5\\Android\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\values-port\\values-port.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Valentin\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\3e7eca6296bb568f3a84f718f639444b\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
