@@ -9,12 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
-<<<<<<< HEAD
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, ListFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteractionListener, DetailsFragment.OnFragmentInteractionListener {
-=======
-public class MainActivity extends AppCompatActivity implements ListFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteractionListener, MapFragment.OnFragmentInteractionListener {
->>>>>>> Valentin
+
+public class MainActivity extends AppCompatActivity implements ListFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteractionListener, DetailsFragment.OnFragmentInteractionListener {
 
 
     @Override
@@ -46,9 +44,6 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
 
     //Set the content of the file menu.xml into the toolbar
     @Override
-<<<<<<< HEAD
-    public void onClick(View view) {
-=======
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
@@ -69,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
         }
->>>>>>> Valentin
     }
 
     //##############################################################################################
