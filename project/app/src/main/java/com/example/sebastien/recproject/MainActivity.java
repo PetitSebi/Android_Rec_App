@@ -9,11 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 
 public class MainActivity extends AppCompatActivity implements ListFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteractionListener, DetailsFragment.OnFragmentInteractionListener {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,4 +103,5 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         fragmentTransaction.replace(R.id.container, listFragment);
         fragmentTransaction.commit();
     }
+
 }

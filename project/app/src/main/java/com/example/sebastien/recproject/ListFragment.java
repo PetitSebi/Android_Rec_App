@@ -4,10 +4,20 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 
 /**
@@ -35,6 +45,9 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     private Button buttonList;
     private Button buttonInfo;
     private Button buttonMap;
+    private TextView searchBar;
+
+    private RequestQueue queue;
 
     public ListFragment() {
         // Required empty public constructor
@@ -73,6 +86,9 @@ public class ListFragment extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
+        // Create an HTTP Request queue
+        queue = Volley.newRequestQueue((MainActivity)getActivity());
+
         //Initialize buttons to switch between fragments in the MainCActivity
         buttonList = (Button)view.findViewById(R.id.buttonList);
         buttonList.setOnClickListener(this);
@@ -81,10 +97,20 @@ public class ListFragment extends Fragment implements View.OnClickListener{
         buttonMap = (Button) view.findViewById(R.id.buttonMap);
         buttonMap.setOnClickListener(this);
 
-
-
-
-
+        // Edit Text to search information on Google
+        searchBar = (TextView) view.findViewById(R.id.searchBar);
+        // Set an editorActionListener replacing a "search" button
+        searchBar.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    // Search what has been typed on Google
+                    searchGoogleGETRequest(String.valueOf(searchBar.getText()));
+                    return true;
+                }
+                return false;
+            }
+        });
 
         return view;
     }
@@ -130,6 +156,25 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     }
 
 
+    public void searchGoogleGETRequest(String stringSearched){
+        // We are using the Google Custom Search API to get the first 10 results of Google formatted in JSON
+        String url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyCvojZ4WyDacrj4-papbJrCFCcrIXf_Trk&cx=013421088620583939471:wcsjj9jp5ki&q="+stringSearched;
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //Todo
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Todo
+            }
+        });
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
 
 
     /**
