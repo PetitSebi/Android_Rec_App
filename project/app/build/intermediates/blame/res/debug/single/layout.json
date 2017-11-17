@@ -16,12 +16,12 @@
         "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\bfaa70e4120d0339a770fca8fb6783a6\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
-        "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
-        "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95eea025ca4f1bf47e657eb6bc8a2ea4\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
-    },
-    {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_info.xml",
         "source": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\src\\main\\res\\layout\\fragment_info.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
+        "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95eea025ca4f1bf47e657eb6bc8a2ea4\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
     },
     {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
@@ -72,12 +72,12 @@
         "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95eea025ca4f1bf47e657eb6bc8a2ea4\\res\\layout\\abc_alert_dialog_material.xml"
     },
     {
-        "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines_media.xml",
-        "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\b4778a7a04fd89e2abab18bf44122791\\res\\layout\\notification_template_lines_media.xml"
-    },
-    {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_dialog_title_material.xml",
         "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95eea025ca4f1bf47e657eb6bc8a2ea4\\res\\layout\\abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines_media.xml",
+        "source": "C:\\Users\\Sébastien\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\b4778a7a04fd89e2abab18bf44122791\\res\\layout\\notification_template_lines_media.xml"
     },
     {
         "merged": "D:\\AndroidProject\\Android_Rec_App\\project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_action.xml",

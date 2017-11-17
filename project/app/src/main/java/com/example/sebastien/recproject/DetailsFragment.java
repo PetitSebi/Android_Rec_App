@@ -9,6 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +40,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
     private Button buttonList;
     private Button buttonInfo;
     private Button buttonMap;
+    private RequestQueue queue;
 
     public DetailsFragment() {
         // Required empty public constructor
@@ -79,6 +87,8 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
         buttonMap = (Button) view.findViewById(R.id.buttonMap);
         buttonMap.setOnClickListener(this);
 
+        // Create an HTTP Request queue
+        queue = Volley.newRequestQueue((MainActivity)getActivity());
 
         return view;
     }
@@ -121,6 +131,27 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
                 // Display MapsActivity
                 break;
         }
+    }
+
+
+    public void whoisRequest(String domain){
+        // We are using the Whois API to gather information about the targeted domain
+        String url = "http://api.whoapi.com/?apikey=a0a4b7e8e99083730033e34df1db4efc&r=whois&domain="+domain+"&ip=";
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //Todo
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Todo
+            }
+        });
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
 
     /**
