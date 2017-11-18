@@ -1,0 +1,14 @@
+
+\.idea/workspace\.xml
+
+\.idea/
+
+project/\.gradle/
+
+project/build/
+
+project/local\.properties
+
+project/app/build/
+
+project/app/app\.iml

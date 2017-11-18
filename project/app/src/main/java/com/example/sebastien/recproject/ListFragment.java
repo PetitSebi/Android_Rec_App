@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -36,8 +39,17 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     private Button buttonInfo;
     private Button buttonMap;
 
+
+    //ListView with a Recycler
+    private ListView listGoogleResults;
+    private Adapter googleResultsAdapter;
+    private ArrayList<GoogleResultItem> googleResultArrayList;
+
+    public static final String BUNDLE_PARAM_GOOGLERESULTITEM = "BUNDLE_PARAM_GOOGLERESULTITEM";
+
+
     public ListFragment() {
-        // Required empty public constructor
+        // Required empty public constructors
     }
 
     /**
@@ -45,15 +57,13 @@ public class ListFragment extends Fragment implements View.OnClickListener{
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment ListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ListFragment newInstance(String param1, String param2) {
+    public static ListFragment newInstance(ArrayList<GoogleResultItem> googleResultArrayList) {
         ListFragment fragment = new ListFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable(BUNDLE_PARAM_GOOGLERESULTITEM, googleResultArrayList );
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,8 +72,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            googleResultArrayList = (ArrayList<GoogleResultItem>)getArguments().getSerializable((BUNDLE_PARAM_GOOGLERESULTITEM));
         }
     }
 
@@ -81,9 +90,13 @@ public class ListFragment extends Fragment implements View.OnClickListener{
         buttonMap = (Button) view.findViewById(R.id.buttonMap);
         buttonMap.setOnClickListener(this);
 
-
-
-
+        //Initialize listView
+        if( googleResultArrayList != null)
+        {
+            listGoogleResults = (ListView) view.findViewById(R.id.listView);
+            googleResultsAdapter = new Adapter(getContext(), googleResultArrayList , mListener);
+            listGoogleResults.setAdapter(googleResultsAdapter);
+        }
 
 
         return view;

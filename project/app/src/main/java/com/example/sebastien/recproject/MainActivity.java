@@ -9,10 +9,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
+
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.Dao;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity implements ListFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteractionListener, DetailsFragment.OnFragmentInteractionListener {
+
+    private DBHelper dbHelper;
+    private Dao<GoogleResultItem, String> googleResultItemDao;
+
+    public ArrayList<GoogleResultItem> list = new ArrayList<GoogleResultItem>();
+
 
 
     @Override
@@ -34,6 +45,20 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         setSupportActionBar(toolBar);
         //Remove the name of the application from the toolbar
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+        dbHelper = OpenHelperManager.getHelper(this, DBHelper.class);
+        googleResultItemDao = dbHelper.getGoogleResultDao();
+
+        AsyncDBAcces testAsynchrone = new AsyncDBAcces(this, googleResultItemDao);
+        testAsynchrone.execute();
+
+
+        GoogleResultItem googleResulItem = new GoogleResultItem("Une URL2", "http://www.unsite.com");
+
+        AsyncDBWrite writeInDbBottle = new AsyncDBWrite(this, googleResultItemDao, googleResulItem );
+        writeInDbBottle.execute();
+
 
     }
 
@@ -105,4 +130,28 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         fragmentTransaction.replace(R.id.container, listFragment);
         fragmentTransaction.commit();
     }
+
+
+    //##############################################################################################
+    //DataBase interactions
+    //##############################################################################################
+
+    public void addGoogleResultItemToBDD( GoogleResultItem item ) throws SQLException {
+        googleResultItemDao.create(item);
+    }
+
+
+    public void displayGoogleResultList()
+    {
+
+        FragmentManager fragmentmanager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
+
+        ListFragment listFragment = ListFragment.newInstance(list);
+        FragmentTransaction transaction = fragmentmanager.beginTransaction();
+        transaction.replace(R.id.container, listFragment);
+        transaction.commit();
+    }
+
+
 }
