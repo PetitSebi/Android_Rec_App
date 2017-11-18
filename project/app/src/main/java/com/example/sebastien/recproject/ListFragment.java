@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,6 +19,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.ArrayList;
 
 
@@ -54,6 +57,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     private ListView listGoogleResults;
     private Adapter googleResultsAdapter;
     private ArrayList<GoogleResultItem> googleResultArrayList;
+    private GoogleResult googleResult = new GoogleResult();
 
     public static final String BUNDLE_PARAM_GOOGLERESULTITEM = "BUNDLE_PARAM_GOOGLERESULTITEM";
 
@@ -67,8 +71,6 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
      * @return A new instance of fragment ListFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -130,6 +132,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
         return view;
     }
 
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -179,7 +182,16 @@ public class ListFragment extends Fragment implements View.OnClickListener{
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //Todo
+                        Gson gson = new GsonBuilder().create();
+                        googleResult = gson.fromJson( response, GoogleResult.class);
+                        ArrayList<GoogleResultItem> list = new ArrayList<>();
+                        list = googleResult.getItems();
+                        for( GoogleResultItem item : list)
+                        {
+                            mListener.addToBDDGoogleResultItem(item);
+                        }
+                        mListener.displayGoogleResult(list);
+
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -205,5 +217,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     public interface OnFragmentInteractionListener {
         void callInfoFragment();
         void callMapsActivity();
+        void addToBDDGoogleResultItem(GoogleResultItem item);
+        void displayGoogleResult(ArrayList<GoogleResultItem> list);
     }
 }

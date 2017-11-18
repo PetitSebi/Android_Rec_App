@@ -12,6 +12,9 @@ import java.util.List;
  * Created by Valentin on 18/11/2017.
  */
 
+//Acces to the data base
+//Return a list a the former results of the google research
+
 public class AsyncDBAcces extends AsyncTask<Void, Integer, String> {
 
     Dao<GoogleResultItem, String> daoGoogleResult;
