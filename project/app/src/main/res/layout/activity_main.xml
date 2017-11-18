@@ -25,7 +25,6 @@ tools:context=".MainActivity" >
         tools:context="com.example.sebastien.recproject.MainActivity">
 
 
-
     </RelativeLayout>
 
 </LinearLayout>
