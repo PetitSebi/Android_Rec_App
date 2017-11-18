@@ -9,9 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import java.util.ArrayList;
 
 
@@ -125,6 +127,16 @@ public class ListFragment extends Fragment implements View.OnClickListener{
             listGoogleResults = (ListView) view.findViewById(R.id.listView);
             googleResultsAdapter = new Adapter(getContext(), googleResultArrayList , mListener);
             listGoogleResults.setAdapter(googleResultsAdapter);
+            // Add a Listener on each Item to call the DetailsFragment
+            listGoogleResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+                    // Get the item that has been clicked
+                    GoogleResultItem googleItem = (GoogleResultItem) parent.getItemAtPosition(position);
+                    // Send the item to the DetailsFragment
+                    mListener.callDetailsFragment(googleItem);
+                }
+            });
         }
 
         return view;
@@ -205,5 +217,6 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     public interface OnFragmentInteractionListener {
         void callInfoFragment();
         void callMapsActivity();
+        void callDetailsFragment(GoogleResultItem googleItem);
     }
 }

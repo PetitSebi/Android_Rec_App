@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -34,6 +35,7 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
     private Button buttonList;
     private Button buttonInfo;
     private Button buttonMap;
+    private TextView textInfo;
 
     public InfoFragment() {
         // Required empty public constructor
@@ -70,10 +72,6 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
-
-
         View view = inflater.inflate(R.layout.fragment_info, container, false);
 
         //Initialize buttons to switch between fragments in the MainCActivity
@@ -84,6 +82,9 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
         buttonMap = (Button) view.findViewById(R.id.buttonMap);
         buttonMap.setOnClickListener(this);
 
+        // Set the source text
+        textInfo = (TextView) view.findViewById(R.id.textInfo);
+        textInfo.setText("Infos à placer ici !");
 
         return view;
     }

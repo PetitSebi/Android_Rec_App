@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,6 +17,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.ArrayList;
 
 
 /**
@@ -37,10 +43,16 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
 
     private OnFragmentInteractionListener mListener;
 
-    private Button buttonList;
-    private Button buttonInfo;
     private Button buttonMap;
     private RequestQueue queue;
+
+    private GoogleResultItem googleItem;
+    private TextView textTitle;
+    private TextView textDomain;
+    private WhoisResult whoisResult;
+    private ListView listView;
+    private WhoisAdapter whoisAdapter;
+    private ArrayList<WhoisResultItem> whoisResultArrayList;
 
     public DetailsFragment() {
         // Required empty public constructor
@@ -77,18 +89,21 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_details, container, false);
 
-        //Initialize buttons to switch between fragments in the MainCActivity
-        buttonList = (Button)view.findViewById(R.id.buttonList);
-        buttonList.setOnClickListener(this);
-        buttonInfo = (Button) view.findViewById(R.id.buttonInfo);
-        buttonInfo.setOnClickListener(this);
+        //Initialize "map" button to locate the targeted server on the map
         buttonMap = (Button) view.findViewById(R.id.buttonMap);
         buttonMap.setOnClickListener(this);
 
+        // Link TextView variables to the design
+        textTitle = (TextView) view.findViewById(R.id.textTitle);
+        textDomain = (TextView) view.findViewById(R.id.textDomain);
+        listView = (ListView) view.findViewById(R.id.listView);
+
         // Create an HTTP Request queue
         queue = Volley.newRequestQueue((MainActivity)getActivity());
+        // Send the Whois Request
+        whoisRequest(googleItem.getLink());
 
         return view;
     }
@@ -96,7 +111,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.callInfoFragment();
+            mListener.callMapsActivity();
         }
     }
 
@@ -119,18 +134,9 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.buttonList :
-                //Replace the fragment with ListFragment
-                mListener.callListFragment();
-                break;
-            case R.id.buttonInfo :
-                mListener.callInfoFragment();
-                break;
-            case R.id.buttonMap :
-                // Display MapsActivity
-                break;
-        }
+        // Display MapsActivity
+        mListener.callMapsActivity();
+
     }
 
 
@@ -142,7 +148,16 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //Todo
+                        // Setup the topbar : title + domain displayed
+                        textTitle.setText(googleItem.getTitle());
+                        textDomain.setText(googleItem.getLink());
+                        // Get the JSON file from WhoisAPI and put it into an Object "whoisResult"
+                        Gson gson = new GsonBuilder().create();
+                        whoisResult = gson.fromJson( response, WhoisResult.class);
+
+                        // Use of an ArrayAdapter to fill out the listView
+                        whoisAdapter = new WhoisAdapter(getContext(), whoisResult.getContacts(), mListener);
+                        listView.setAdapter(whoisAdapter);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -152,6 +167,11 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
         });
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
+
+
+    public void saveGoogleItem(GoogleResultItem googleItem){
+        this.googleItem = googleItem;
     }
 
     /**
@@ -166,7 +186,6 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
      */
 
     public interface OnFragmentInteractionListener {
-        void callInfoFragment();
-        void callListFragment();
+        void callMapsActivity();
     }
 }

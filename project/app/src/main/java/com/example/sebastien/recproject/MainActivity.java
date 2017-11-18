@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         testAsynchrone.execute();
 
 
-        GoogleResultItem googleResulItem = new GoogleResultItem("Une URL2", "http://www.unsite.com");
+        GoogleResultItem googleResulItem = new GoogleResultItem("Une URL2", "www.google.com");
 
         AsyncDBWrite writeInDbBottle = new AsyncDBWrite(this, googleResultItemDao, googleResulItem );
         writeInDbBottle.execute();
@@ -112,11 +112,14 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         this.startActivity(intent);
     }
 
-    public void callDetailsFragment() {
+    public void callDetailsFragment(GoogleResultItem googleItem) {
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
 
         DetailsFragment detailsFragment = new DetailsFragment();
+        // Send the GoogleResultItem to the DetailsFragment through a method
+        detailsFragment.saveGoogleItem(googleItem);
+        // Replace Fragment
         fragmentTransaction.replace(R.id.container, detailsFragment);
         fragmentTransaction.commit();
     }
