@@ -13,6 +13,10 @@ import java.util.List;
 
 /**
  * Created by Valentin on 17/11/2017.
+ *
+ * Description : Implementation of a recycler view for the listFragment to
+ * list the previous results stored in the data base and the results of the
+ * current research on google.
  */
 
 public class Adapter extends ArrayAdapter<GoogleResultItem> {

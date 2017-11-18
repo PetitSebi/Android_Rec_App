@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -31,25 +30,17 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Get fragment manager
-        FragmentManager fragmentmanager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
-
-        //By default when the app start, the ListFragment is displayed
-        ListFragment listFragment = new ListFragment();
-        fragmentTransaction.add(R.id.container, listFragment);
-        fragmentTransaction.commit();
-
         //Initialize toolbar
         Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
         //Remove the name of the application from the toolbar
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-
+        //Initialize elements to interact with the database
         dbHelper = OpenHelperManager.getHelper(this, DBHelper.class);
         googleResultItemDao = dbHelper.getGoogleResultDao();
 
+        //Read the data base
         AsyncDBAcces testAsynchrone = new AsyncDBAcces(this, googleResultItemDao);
         testAsynchrone.execute();
 
@@ -112,7 +103,27 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         this.startActivity(intent);
     }
 
-    public void callDetailsFragment(GoogleResultItem googleItem) {
+    @Override
+    public void addToBDDGoogleResultItem(GoogleResultItem item) {
+        AsyncDBWrite writeInDbBottle = new AsyncDBWrite(this, googleResultItemDao, item );
+        writeInDbBottle.execute();
+    }
+
+    @Override
+    public void displayGoogleResult(ArrayList<GoogleResultItem> list) {
+
+        this.list = list;
+
+        FragmentManager fragmentmanager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
+
+        ListFragment listFragment = ListFragment.newInstance(list);
+        FragmentTransaction transaction = fragmentmanager.beginTransaction();
+        transaction.replace(R.id.container, listFragment);
+        transaction.commit();
+    }
+
+    public void callDetailsFragment() {
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
 
@@ -139,14 +150,14 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
     //DataBase interactions
     //##############################################################################################
 
-    public void addGoogleResultItemToBDD( GoogleResultItem item ) throws SQLException {
+/*    public void addGoogleResultItemToBDD( GoogleResultItem item ) throws SQLException {
         googleResultItemDao.create(item);
-    }
+    }*/
 
 
     public void displayGoogleResultList()
     {
-
+    // Display the list of previous researched
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
 

@@ -8,13 +8,23 @@ import java.io.Serializable;
 
 /**
  * Created by Valentin on 17/11/2017.
+ *
+ * Description :
+ * Item of a google search result
+ *
+ * Content :
+ * Id : unique id for the data base
+ * title : title of the item
+ * displayLink : domain name
  */
 
 @DatabaseTable(tableName = "GoogleResults")
 public class GoogleResultItem implements Serializable{
-    @DatabaseField(id = true)
+    @DatabaseField(generatedId = true)
+    public int id;
+    @DatabaseField
     public String title;
-    //@DatabaseField()
+    @DatabaseField()
     public String displayLink;
 
     GoogleResultItem()
@@ -36,6 +46,16 @@ public class GoogleResultItem implements Serializable{
     public String getLink()
     {
         return displayLink;
+    }
+
+    public void setTitle(String title)
+    {
+        this.title = title;
+    }
+
+    public void setDisplayLink(String displayLink)
+    {
+        this.displayLink = displayLink;
     }
 
 

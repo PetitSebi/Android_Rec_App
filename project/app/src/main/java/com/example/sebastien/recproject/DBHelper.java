@@ -12,6 +12,8 @@ import java.sql.SQLException;
 
 /**
  * Created by Valentin on 17/11/2017.
+ *
+ * Used for the implementation of ORMLite and the Data base
  */
 
 public class DBHelper extends OrmLiteSqliteOpenHelper {
