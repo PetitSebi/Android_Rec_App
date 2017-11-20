@@ -22,10 +22,12 @@ import java.io.Serializable;
 public class GoogleResultItem implements Serializable{
     @DatabaseField(generatedId = true)
     public int id;
-    @DatabaseField
+    @DatabaseField()
     public String title;
     @DatabaseField()
     public String displayLink;
+    @DatabaseField()
+    public String research = new String("");
 
     GoogleResultItem()
     {
@@ -48,6 +50,10 @@ public class GoogleResultItem implements Serializable{
         return displayLink;
     }
 
+    public String getResearch(){
+        return research;
+    }
+
     public void setTitle(String title)
     {
         this.title = title;
@@ -56,6 +62,10 @@ public class GoogleResultItem implements Serializable{
     public void setDisplayLink(String displayLink)
     {
         this.displayLink = displayLink;
+    }
+
+    public void setResearch(String research){
+        this.research = research;
     }
 
 

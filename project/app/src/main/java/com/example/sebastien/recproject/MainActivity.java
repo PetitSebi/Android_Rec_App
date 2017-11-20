@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
 
     public ArrayList<GoogleResultItem> list = new ArrayList<GoogleResultItem>();
 
+    private ListFragment listFragment;
+
 
 
     @Override
@@ -40,16 +42,16 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         dbHelper = OpenHelperManager.getHelper(this, DBHelper.class);
         googleResultItemDao = dbHelper.getGoogleResultDao();
 
-        //Read the data base
+
+        FragmentManager fragmentmanager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
+        ListFragment listFragment = new ListFragment();
+        fragmentTransaction.replace(R.id.container, listFragment);
+        fragmentTransaction.commit();
+
+        //Read the data base and display it in the ListFragment
         AsyncDBAcces testAsynchrone = new AsyncDBAcces(this, googleResultItemDao);
         testAsynchrone.execute();
-
-
-        GoogleResultItem googleResulItem = new GoogleResultItem("Une URL2", "www.google.com");
-
-        AsyncDBWrite writeInDbBottle = new AsyncDBWrite(this, googleResultItemDao, googleResulItem );
-        writeInDbBottle.execute();
-
 
     }
 
@@ -112,23 +114,22 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
 
     @Override
     public void displayGoogleResult(ArrayList<GoogleResultItem> list) {
-
         this.list = list;
 
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
+        ListFragment listFragment = new ListFragment();
 
-        ListFragment listFragment = ListFragment.newInstance(list);
-        FragmentTransaction transaction = fragmentmanager.beginTransaction();
-        transaction.replace(R.id.container, listFragment);
-        transaction.commit();
+        listFragment.updateList(this.list);
+
+        fragmentTransaction.replace(R.id.container, listFragment);
+        fragmentTransaction.commit();
     }
 
-
+    @Override
     public void callDetailsFragment(GoogleResultItem googleItem) {
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
-
         DetailsFragment detailsFragment = new DetailsFragment();
         // Send the GoogleResultItem to the DetailsFragment through a method
         detailsFragment.saveGoogleItem(googleItem);
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
 
-        ListFragment listFragment = new ListFragment();
+        ListFragment listFragment = ListFragment.newInstance(list);
         fragmentTransaction.replace(R.id.container, listFragment);
         fragmentTransaction.commit();
     }
@@ -152,21 +153,20 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
     //DataBase interactions
     //##############################################################################################
 
-/*    public void addGoogleResultItemToBDD( GoogleResultItem item ) throws SQLException {
-        googleResultItemDao.create(item);
-    }*/
 
-
+    //Display the BDD at the launch of the application, C.f. AsyncDBAcces
     public void displayGoogleResultList()
     {
     // Display the list of previous researched
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
+        ListFragment listFragment = new ListFragment();
 
-        ListFragment listFragment = ListFragment.newInstance(list);
-        FragmentTransaction transaction = fragmentmanager.beginTransaction();
-        transaction.replace(R.id.container, listFragment);
-        transaction.commit();
+        listFragment.updateList(list);
+
+        fragmentTransaction.replace(R.id.container, listFragment);
+        fragmentTransaction.commit();
+
     }
 
 
