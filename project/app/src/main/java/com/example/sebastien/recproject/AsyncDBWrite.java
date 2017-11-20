@@ -44,7 +44,7 @@ public class AsyncDBWrite extends AsyncTask<Void, Integer, String> {
     }
 
     protected void onPostExecute(String result) {
-        main.displayGoogleResultList();
+
     }
 
 }

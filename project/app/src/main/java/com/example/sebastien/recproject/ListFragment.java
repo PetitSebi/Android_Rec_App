@@ -35,29 +35,24 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class ListFragment extends Fragment implements View.OnClickListener{
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    //
     private OnFragmentInteractionListener mListener;
-
 
     //Buttons to switch from a fragment to another in the MainActivity
     private Button buttonList;
     private Button buttonInfo;
     private Button buttonMap;
+    //Search field
     private TextView searchBar;
 
 
     //ListView with a Recycler
     private ListView listGoogleResults;
-    private Adapter googleResultsAdapter;
+    private Adapter googleResultsAdapter = null;
+    //List from the MainActivity set as parameter in the newInstance() function
     private ArrayList<GoogleResultItem> googleResultArrayList;
+    //Used to parse the Json after the GET request
     private GoogleResult googleResult = new GoogleResult();
 
     public static final String BUNDLE_PARAM_GOOGLERESULTITEM = "BUNDLE_PARAM_GOOGLERESULTITEM";
@@ -122,12 +117,20 @@ public class ListFragment extends Fragment implements View.OnClickListener{
                 return false;
             }
         });
+
         //Initialize listView
-        if( googleResultArrayList != null)
-        {
+        if( googleResultArrayList != null) {
             listGoogleResults = (ListView) view.findViewById(R.id.listView);
-            googleResultsAdapter = new Adapter(getContext(), googleResultArrayList , mListener);
-            listGoogleResults.setAdapter(googleResultsAdapter);
+            if( googleResultsAdapter ==null)
+            {
+                googleResultsAdapter = new Adapter(getContext(), googleResultArrayList, mListener);
+                listGoogleResults.setAdapter(googleResultsAdapter);
+            }
+            else
+            {
+                googleResultsAdapter.notifyDataSetChanged();
+            }
+
             // Add a Listener on each Item to call the DetailsFragment
             listGoogleResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -140,8 +143,12 @@ public class ListFragment extends Fragment implements View.OnClickListener{
             });
         }
 
+
+
         return view;
     }
+
+
 
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -185,7 +192,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     }
 
 
-    public void searchGoogleGETRequest(String stringSearched){
+    public void searchGoogleGETRequest(final String stringSearched){
         // We are using the Google Custom Search API to get the first 10 results of Google formatted in JSON
         String url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyCvojZ4WyDacrj4-papbJrCFCcrIXf_Trk&cx=013421088620583939471:wcsjj9jp5ki&q="+stringSearched;
         // Request a string response from the provided URL.
@@ -197,11 +204,16 @@ public class ListFragment extends Fragment implements View.OnClickListener{
                         googleResult = gson.fromJson( response, GoogleResult.class);
                         ArrayList<GoogleResultItem> list = new ArrayList<>();
                         list = googleResult.getItems();
+                        googleResultArrayList.clear();
+                        googleResultsAdapter.notifyDataSetChanged();
                         for( GoogleResultItem item : list)
                         {
+                            item.setResearch(stringSearched);
                             mListener.addToBDDGoogleResultItem(item);
+                            googleResultArrayList.add(item);
+                            googleResultsAdapter.notifyDataSetChanged();
                         }
-                        mListener.displayGoogleResult(list);
+                        //mListener.displayGoogleResult(list);
 
                     }
                 }, new Response.ErrorListener() {
@@ -213,6 +225,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
+
 
 
     /**

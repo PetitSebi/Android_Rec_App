@@ -29,19 +29,34 @@ public class Adapter extends ArrayAdapter<GoogleResultItem> {
 
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View rootView = LayoutInflater.from(getContext()).inflate(R.layout.google_result_item, parent, false);
+
+        View rootView;
+
+        if( convertView == null)
+        {
+            rootView = LayoutInflater.from(getContext()).inflate(R.layout.google_result_item, parent, false);
+        }
+        else
+        {
+            rootView = convertView;
+        }
 
         final TextView txvTitle = rootView.findViewById(R.id.title);
         TextView txvDisplayLink = rootView.findViewById(R.id.displayLink);
+        TextView txvResearch = rootView.findViewById(R.id.research);
 
 
         GoogleResultItem googleResultItem = getItem(position);
 
         txvTitle.setText(googleResultItem.getTitle());
         txvDisplayLink.setText(googleResultItem.getLink());
+        txvResearch.setText(googleResultItem.getResearch());
 
         return rootView;
     }
+
+
+
 
 
 }
