@@ -49,9 +49,9 @@ public class ListFragment extends Fragment implements View.OnClickListener{
 
     //ListView with a Recycler
     private ListView listGoogleResults;
-    private Adapter googleResultsAdapter = null;
+    private Adapter googleResultsAdapter;
     //List from the MainActivity set as parameter in the newInstance() function
-    private ArrayList<GoogleResultItem> googleResultArrayList;
+    private ArrayList<GoogleResultItem> googleResultArrayList = new ArrayList<GoogleResultItem>();
     //Used to parse the Json after the GET request
     private GoogleResult googleResult = new GoogleResult();
 
@@ -118,30 +118,22 @@ public class ListFragment extends Fragment implements View.OnClickListener{
             }
         });
 
-        //Initialize listView
-        if( googleResultArrayList != null) {
-            listGoogleResults = (ListView) view.findViewById(R.id.listView);
-            if( googleResultsAdapter ==null)
-            {
-                googleResultsAdapter = new Adapter(getContext(), googleResultArrayList, mListener);
-                listGoogleResults.setAdapter(googleResultsAdapter);
-            }
-            else
-            {
-                googleResultsAdapter.notifyDataSetChanged();
-            }
 
-            // Add a Listener on each Item to call the DetailsFragment
-            listGoogleResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-                    // Get the item that has been clicked
-                    GoogleResultItem googleItem = (GoogleResultItem) parent.getItemAtPosition(position);
-                    // Send the item to the DetailsFragment
-                    mListener.callDetailsFragment(googleItem);
-                }
-            });
-        }
+        listGoogleResults = (ListView) view.findViewById(R.id.listView);
+        googleResultsAdapter = new Adapter(getContext(), googleResultArrayList, mListener);
+        listGoogleResults.setAdapter(googleResultsAdapter);
+
+        // Add a Listener on each Item to call the DetailsFragment
+        listGoogleResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
+                // Get the item that has been clicked
+                GoogleResultItem googleItem = (GoogleResultItem) parent.getItemAtPosition(position);
+                // Send the item to the DetailsFragment
+                mListener.callDetailsFragment(googleItem);
+            }
+        });
+
 
 
 
@@ -204,16 +196,12 @@ public class ListFragment extends Fragment implements View.OnClickListener{
                         googleResult = gson.fromJson( response, GoogleResult.class);
                         ArrayList<GoogleResultItem> list = new ArrayList<>();
                         list = googleResult.getItems();
-                        googleResultArrayList.clear();
-                        googleResultsAdapter.notifyDataSetChanged();
                         for( GoogleResultItem item : list)
                         {
                             item.setResearch(stringSearched);
                             mListener.addToBDDGoogleResultItem(item);
-                            googleResultArrayList.add(item);
-                            googleResultsAdapter.notifyDataSetChanged();
                         }
-                        //mListener.displayGoogleResult(list);
+                        mListener.displayGoogleResult(list);
 
                     }
                 }, new Response.ErrorListener() {
@@ -224,6 +212,14 @@ public class ListFragment extends Fragment implements View.OnClickListener{
         });
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
+
+    public void updateList(ArrayList<GoogleResultItem> list)
+    {
+        googleResultArrayList = list;
+        if( googleResultsAdapter != null)
+            googleResultsAdapter.notifyDataSetChanged();
+
     }
 
 

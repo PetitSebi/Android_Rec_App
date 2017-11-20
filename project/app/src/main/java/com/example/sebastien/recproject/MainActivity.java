@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
 
     public ArrayList<GoogleResultItem> list = new ArrayList<GoogleResultItem>();
 
+    private ListFragment listFragment;
+
 
 
     @Override
@@ -40,11 +42,11 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         dbHelper = OpenHelperManager.getHelper(this, DBHelper.class);
         googleResultItemDao = dbHelper.getGoogleResultDao();
 
+
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
-
         ListFragment listFragment = new ListFragment();
-        fragmentTransaction.add(R.id.container, listFragment);
+        fragmentTransaction.replace(R.id.container, listFragment);
         fragmentTransaction.commit();
 
         //Read the data base and display it in the ListFragment
@@ -115,10 +117,12 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
 
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
-        ListFragment listFragment = ListFragment.newInstance(list);
-        FragmentTransaction transaction = fragmentmanager.beginTransaction();
-        transaction.replace(R.id.container, listFragment);
-        transaction.commit();
+        ListFragment listFragment = new ListFragment();
+
+        listFragment.updateList(this.list);
+
+        fragmentTransaction.replace(R.id.container, listFragment);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -155,11 +159,13 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
     // Display the list of previous researched
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
-        //list from the data base reading
-        ListFragment listFragment = ListFragment.newInstance(list);
-        FragmentTransaction transaction = fragmentmanager.beginTransaction();
-        transaction.replace(R.id.container, listFragment);
-        transaction.commit();
+        ListFragment listFragment = new ListFragment();
+
+        listFragment.updateList(list);
+
+        fragmentTransaction.replace(R.id.container, listFragment);
+        fragmentTransaction.commit();
+
     }
 
 
