@@ -2855,16 +2855,9 @@ containing a value of this type.
         public static final int beginning=0x7f0b002c;
         public static final int blocking=0x7f0b0029;
         public static final int bottom=0x7f0b0045;
-<<<<<<< HEAD
         public static final int buttonInfo=0x7f0b0081;
         public static final int buttonList=0x7f0b0080;
         public static final int buttonMap=0x7f0b007d;
-=======
-        public static final int button2=0x7f0b007e;
-        public static final int buttonInfo=0x7f0b007d;
-        public static final int buttonList=0x7f0b007b;
-        public static final int buttonMap=0x7f0b007c;
->>>>>>> Valentin
         public static final int buttonPanel=0x7f0b0050;
         public static final int cancel_action=0x7f0b0089;
         public static final int chains=0x7f0b0015;
@@ -2879,11 +2872,7 @@ containing a value of this type.
         public static final int decor_content_parent=0x7f0b0067;
         public static final int default_activity_button=0x7f0b004d;
         public static final int disableHome=0x7f0b001a;
-<<<<<<< HEAD
         public static final int displayLink=0x7f0b0084;
-=======
-        public static final int displayLink=0x7f0b0081;
->>>>>>> Valentin
         public static final int edit_query=0x7f0b006b;
         public static final int end=0x7f0b002d;
         public static final int end_padder=0x7f0b0097;
@@ -2905,19 +2894,11 @@ containing a value of this type.
         public static final int line3=0x7f0b0006;
         public static final int linearLayout=0x7f0b007f;
         public static final int listMode=0x7f0b0017;
-<<<<<<< HEAD
         public static final int listView=0x7f0b007e;
         public static final int list_item=0x7f0b004e;
         public static final int map=0x7f0b007a;
         public static final int media_actions=0x7f0b008b;
         public static final int message=0x7f0b0098;
-=======
-        public static final int listView=0x7f0b0080;
-        public static final int list_item=0x7f0b004e;
-        public static final int map=0x7f0b007a;
-        public static final int media_actions=0x7f0b0088;
-        public static final int message=0x7f0b0095;
->>>>>>> Valentin
         public static final int middle=0x7f0b002e;
         public static final int multiply=0x7f0b0020;
         public static final int never=0x7f0b003d;
@@ -2940,11 +2921,7 @@ containing a value of this type.
         public static final int scrollIndicatorDown=0x7f0b0058;
         public static final int scrollIndicatorUp=0x7f0b0054;
         public static final int scrollView=0x7f0b0055;
-<<<<<<< HEAD
         public static final int searchBar=0x7f0b0083;
-=======
-        public static final int searchBar=0x7f0b007f;
->>>>>>> Valentin
         public static final int search_badge=0x7f0b006d;
         public static final int search_bar=0x7f0b006c;
         public static final int search_button=0x7f0b006e;
@@ -2984,13 +2961,9 @@ containing a value of this type.
         public static final int textPhone=0x7f0b009c;
         public static final int textSpacerNoButtons=0x7f0b0057;
         public static final int textSpacerNoTitle=0x7f0b0056;
-<<<<<<< HEAD
         public static final int textTitle=0x7f0b007b;
         public static final int textType=0x7f0b0099;
         public static final int time=0x7f0b0090;
-=======
-        public static final int time=0x7f0b008d;
->>>>>>> Valentin
         public static final int title=0x7f0b000c;
         public static final int titleDividerNoCustom=0x7f0b005e;
         public static final int title_template=0x7f0b005c;
@@ -3069,10 +3042,7 @@ containing a value of this type.
         public static final int select_dialog_singlechoice_material=0x7f040034;
         public static final int support_simple_spinner_dropdown_item=0x7f040035;
         public static final int tooltip=0x7f040036;
-<<<<<<< HEAD
         public static final int whois_result_item=0x7f040037;
-=======
->>>>>>> Valentin
     }
     public static final class menu {
         public static final int menu=0x7f0d0000;

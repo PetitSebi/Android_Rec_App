@@ -21,6 +21,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -111,7 +113,8 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.callMapsActivity();
+            ArrayList<String> list = new ArrayList<>();
+            mListener.callMapsActivity(list);
         }
     }
 
@@ -134,9 +137,10 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        // Display MapsActivity
-        mListener.callMapsActivity();
-
+        // Convert WhoisAdapter to a list of addresse
+        ArrayList<String> listOfAddresses = whoisAdapterToListAddresses(whoisResult);
+        // Call MapsActivity
+        mListener.callMapsActivity(listOfAddresses);
     }
 
 
@@ -169,7 +173,26 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
         queue.add(stringRequest);
     }
 
+    public ArrayList<String> whoisAdapterToListAddresses(WhoisResult whoisResult){
+        // Get the list of contacts (a contact contains a type, a name, a phone, an address, an email, and an organization)
+        ArrayList<WhoisResultItem> contacts = whoisResult.getContacts();
+        // Get the addresses for each contact in the list
+        ArrayList<String> listOfAddresses = new ArrayList<>();
+        for(WhoisResultItem item: contacts){
+            if(!item.getFull_address().equals("")){
+                // We need to remove the spaces before sending the request
+                listOfAddresses.add(item.getFull_address().replace(" ","+").replace(",",""));
+                // Remove the addresses that appear multiple times
+                Set set = new HashSet() ;
+                set.addAll(listOfAddresses) ;
+                listOfAddresses = null;
+                listOfAddresses = new ArrayList(set) ;
+            }
+        }
+        return listOfAddresses;
+    }
 
+    // Method to transfer a googleItem between ListFragment and DetailsFragment
     public void saveGoogleItem(GoogleResultItem googleItem){
         this.googleItem = googleItem;
     }
@@ -186,6 +209,6 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
      */
 
     public interface OnFragmentInteractionListener {
-        void callMapsActivity();
+        void callMapsActivity(ArrayList<String> listOfAddresses);
     }
 }

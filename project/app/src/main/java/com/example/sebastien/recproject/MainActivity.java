@@ -90,16 +90,17 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
     public void callInfoFragment() {
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
-
+        // Replace the current fragment with infoFragment
         InfoFragment infoFragment = new InfoFragment();
         fragmentTransaction.replace(R.id.container, infoFragment);
         fragmentTransaction.commit();
     }
 
     @Override
-    public void callMapsActivity() {
+    public void callMapsActivity(ArrayList<String> listOfAddresses) {
         Intent intent = new Intent(this, MapsActivity.class);
-        //intent.putExtra(Intent.EXTRA_TEXT, "Data");
+        // Transfer a list of physical addresses to the MapsActivity
+        intent.putExtra("listOfAddresses", listOfAddresses);
         this.startActivity(intent);
     }
 
@@ -123,7 +124,8 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         transaction.commit();
     }
 
-    public void callDetailsFragment() {
+
+    public void callDetailsFragment(GoogleResultItem googleItem) {
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
 

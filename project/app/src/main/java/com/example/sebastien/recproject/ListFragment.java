@@ -179,7 +179,8 @@ public class ListFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.buttonMap :
                 //Call MapsActivity
-                mListener.callMapsActivity();
+                ArrayList<String> list = new ArrayList<>();
+                mListener.callMapsActivity(list);
                 break;
         }
     }
@@ -227,7 +228,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
      */
     public interface OnFragmentInteractionListener {
         void callInfoFragment();
-        void callMapsActivity();
+        void callMapsActivity(ArrayList<String> listOfAddresses);
         void addToBDDGoogleResultItem(GoogleResultItem item);
         void displayGoogleResult(ArrayList<GoogleResultItem> list);
         void callDetailsFragment(GoogleResultItem googleItem);
