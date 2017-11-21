@@ -75,7 +75,12 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
                 //
                 return true;
             case R.id.options:
-                //
+
+                AsyncDBDelete testAsynchrone = new AsyncDBDelete(this, googleResultItemDao, list);
+                testAsynchrone.execute();
+                list.clear();
+                displayGoogleResultList();
+
                 return true;
 
             default: // If we got here, the user's action was not recognized.
