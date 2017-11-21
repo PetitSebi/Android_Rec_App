@@ -10,6 +10,6 @@
     <!-- Settings, should always be in the overflow -->
     <item
         android:id="@+id/options"
-        android:title="Options"
+        android:title="Supprimer l'historique"
         app:showAsAction="never" />
 </menu>

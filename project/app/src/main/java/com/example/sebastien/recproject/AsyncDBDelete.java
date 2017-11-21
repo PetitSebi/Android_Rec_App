@@ -45,6 +45,8 @@ public class AsyncDBDelete extends AsyncTask<Void, Integer, String> {
     }
 
     protected void onPostExecute(String result) {
+        main.list.clear();
+        main.displayGoogleResultList();
     }
 }
 
