@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -138,9 +139,10 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         // Convert WhoisAdapter to a list of addresse
-        ArrayList<String> listOfAddresses = whoisAdapterToListAddresses(whoisResult);
+        ArrayList<String> listAddresses = whoisAdapterToListAddresses(whoisResult);
         // Call MapsActivity
-        mListener.callMapsActivity(listOfAddresses);
+        Log.i("DETAILS_ONCLICK_MMA",listAddresses.toString());
+        mListener.callMapsActivity(listAddresses);
     }
 
 
@@ -177,19 +179,19 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
         // Get the list of contacts (a contact contains a type, a name, a phone, an address, an email, and an organization)
         ArrayList<WhoisResultItem> contacts = whoisResult.getContacts();
         // Get the addresses for each contact in the list
-        ArrayList<String> listOfAddresses = new ArrayList<>();
+        ArrayList<String> listAddresses = new ArrayList<>();
         for(WhoisResultItem item: contacts){
             if(!item.getFull_address().equals("")){
                 // We need to remove the spaces before sending the request
-                listOfAddresses.add(item.getFull_address().replace(" ","+").replace(",",""));
+                listAddresses.add(item.getFull_address().replace(" ","+").replace(",",""));
                 // Remove the addresses that appear multiple times
                 Set set = new HashSet() ;
-                set.addAll(listOfAddresses) ;
-                listOfAddresses = null;
-                listOfAddresses = new ArrayList(set) ;
+                set.addAll(listAddresses) ;
+                listAddresses = null;
+                listAddresses = new ArrayList(set) ;
             }
         }
-        return listOfAddresses;
+        return listAddresses;
     }
 
     // Method to transfer a googleItem between ListFragment and DetailsFragment
@@ -209,6 +211,6 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
      */
 
     public interface OnFragmentInteractionListener {
-        void callMapsActivity(ArrayList<String> listOfAddresses);
+        void callMapsActivity(ArrayList<String> listAddresses);
     }
 }

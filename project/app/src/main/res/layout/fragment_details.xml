@@ -25,16 +25,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="..."
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                    android:text="..." />
 
                 <TextView
                     android:id="@+id/textDomain"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="..."
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:text="..." />
             </LinearLayout>
 
             <Button

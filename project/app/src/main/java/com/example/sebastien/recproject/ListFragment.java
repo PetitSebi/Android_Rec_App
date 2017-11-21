@@ -237,7 +237,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
      */
     public interface OnFragmentInteractionListener {
         void callInfoFragment();
-        void callMapsActivity(ArrayList<String> listOfAddresses);
+        void callMapsActivity(ArrayList<String> listAddresses);
         void addToBDDGoogleResultItem(GoogleResultItem item);
         void displayGoogleResult(ArrayList<GoogleResultItem> list);
         void callDetailsFragment(GoogleResultItem googleItem);

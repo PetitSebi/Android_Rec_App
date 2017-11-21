@@ -2897,13 +2897,8 @@ containing a value of this type.
         public static final int listView=0x7f0b007e;
         public static final int list_item=0x7f0b004e;
         public static final int map=0x7f0b007a;
-<<<<<<< HEAD
-        public static final int media_actions=0x7f0b008b;
-        public static final int message=0x7f0b0098;
-=======
         public static final int media_actions=0x7f0b008c;
         public static final int message=0x7f0b0099;
->>>>>>> Valentin
         public static final int middle=0x7f0b002e;
         public static final int multiply=0x7f0b0020;
         public static final int never=0x7f0b003d;
@@ -2968,13 +2963,8 @@ containing a value of this type.
         public static final int textSpacerNoButtons=0x7f0b0057;
         public static final int textSpacerNoTitle=0x7f0b0056;
         public static final int textTitle=0x7f0b007b;
-<<<<<<< HEAD
-        public static final int textType=0x7f0b0099;
-        public static final int time=0x7f0b0090;
-=======
         public static final int textType=0x7f0b009a;
         public static final int time=0x7f0b0091;
->>>>>>> Valentin
         public static final int title=0x7f0b000c;
         public static final int titleDividerNoCustom=0x7f0b005e;
         public static final int title_template=0x7f0b005c;

@@ -2,6 +2,7 @@ package com.example.sebastien.recproject;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,8 +25,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap = null;
     private RequestQueue queue;
-    private ArrayList<LatLng> listOfCoordinates = new ArrayList<>();
-    private ArrayList<String> listOfAddresses;
+    private ArrayList<MapsMarkerCoordinates> listMapsMarkerCoordinates = new ArrayList<>();
+    private ArrayList<String> listAddresses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Create an HTTP Request queue
         queue = Volley.newRequestQueue(this);
         // Get the list of physical addresses, and convert them into coordinates
-        listOfAddresses = (ArrayList<String>) getIntent().getSerializableExtra("listOfAddresses");
+        listAddresses = (ArrayList<String>) getIntent().getSerializableExtra("listAddresses");
+        Log.i("MAPS_ONCREATE_MMA",listAddresses.toString());
         addressesToCoordinates();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -61,9 +63,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         addMarkers();
     }
 
-    public void geocodingRequest(String full_address){
+    public void geocodingRequest(String position){
         // We are using the Geocoding API to convert the full_address to a coordinates
-        String url = "https://maps.googleapis.com/maps/api/geocode/json?address="+full_address+"&key=AIzaSyDPTLi7pp4i37tr2RzsH0JBl_L5td6FyvQ";
+        String url = "https://maps.googleapis.com/maps/api/geocode/json?address="+position+"&key=AIzaSyDPTLi7pp4i37tr2RzsH0JBl_L5td6FyvQ";
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -76,8 +78,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             JSONObject geometry = results.getJSONObject("geometry");
                             JSONObject location = geometry.getJSONObject("location");
                             LatLng coordinates = new LatLng(location.getDouble("lat"),location.getDouble("lng"));
+                            // Get the title
+                            String title = results.getString("formatted_address");
                             // Add the coordinates to the list of coordinates
-                            listOfCoordinates.add(coordinates);
+                            listMapsMarkerCoordinates.add(new MapsMarkerCoordinates(title,coordinates));
                             // refresh the map to add the new marker
                             refreshMap();
                         } catch (JSONException e) {
@@ -95,21 +99,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void addressesToCoordinates(){
-        for( String address : listOfAddresses){
+        for( String address : listAddresses){
             // An empty address field isn't processed
             if(!address.equals("")){
                 // Convert the address into coordinates, and add it to the listOfCoordinates
                 geocodingRequest(address);
+
             }
         }
     }
 
     public void addMarkers(){
-        for(LatLng latLng : listOfCoordinates){
+        for(MapsMarkerCoordinates mmc : listMapsMarkerCoordinates){
                 mMap.addMarker(new MarkerOptions()
-                        .position(latLng)
-                        .title("San Francisco ")
-                        .snippet("Population: 776733 "));
+                        .position(mmc.getLatLng())
+                        .title(mmc.getTitle()));
         }
     }
 

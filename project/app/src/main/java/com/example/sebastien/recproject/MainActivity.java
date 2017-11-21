@@ -99,10 +99,10 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
     }
 
     @Override
-    public void callMapsActivity(ArrayList<String> listOfAddresses) {
+    public void callMapsActivity(ArrayList<String> listAddresses) {
         Intent intent = new Intent(this, MapsActivity.class);
         // Transfer a list of physical addresses to the MapsActivity
-        intent.putExtra("listOfAddresses", listOfAddresses);
+        intent.putExtra("listAddresses", listAddresses);
         this.startActivity(intent);
     }
 
@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         detailsFragment.saveGoogleItem(googleItem);
         // Replace Fragment
         fragmentTransaction.replace(R.id.container, detailsFragment);
+        fragmentTransaction.addToBackStack("detailsFragment");
         fragmentTransaction.commit();
     }
 
