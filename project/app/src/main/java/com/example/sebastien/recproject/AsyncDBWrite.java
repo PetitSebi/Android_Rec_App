@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Valentin on 18/11/2017.
@@ -30,8 +31,22 @@ public class AsyncDBWrite extends AsyncTask<Void, Integer, String> {
 
     @Override
     protected String doInBackground(Void... arg0) {
+        List<GoogleResultItem> database ;
+        GoogleResultItem item;
+        boolean found = false;
         try {
-            daoGoogleResult.create(googleResultItemToAdd);
+            database = daoGoogleResult.queryForAll();
+            for(int i=0; i < database.size(); i++)
+            {
+                item = database.get(i);
+                if( item.getLink().equals(googleResultItemToAdd.getLink())  )
+                {
+                    found = true;
+                }
+            }
+
+            if( !found)
+                daoGoogleResult.create(googleResultItemToAdd);
 
         } catch (SQLException e) {
             e.printStackTrace();
