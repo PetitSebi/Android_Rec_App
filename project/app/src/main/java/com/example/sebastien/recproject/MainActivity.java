@@ -18,9 +18,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements ListFragment.OnFragmentInteractionListener, InfoFragment.OnFragmentInteractionListener, DetailsFragment.OnFragmentInteractionListener {
 
+    //Data base manipulation
     private DBHelper dbHelper;
     private Dao<GoogleResultItem, String> googleResultItemDao;
 
+    //Global variable to save the list
     public ArrayList<GoogleResultItem> list = new ArrayList<GoogleResultItem>();
 
 
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         dbHelper = OpenHelperManager.getHelper(this, DBHelper.class);
         googleResultItemDao = dbHelper.getGoogleResultDao();
 
-
+        //Initialize the screen of the activity, display the ListFragment
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
         ListFragment listFragment = new ListFragment();
@@ -70,15 +72,16 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.actualiser:
-                //
+                //"Actualiser" button of the toolbar
+                //Read all the data base and display it
                 AsyncDBAcces testAsynchrone = new AsyncDBAcces(this, googleResultItemDao);
                 testAsynchrone.execute();
                 return true;
             case R.id.options:
-
+                //Copy the data base into the list variable
                 AsyncDBAcces getdbAsynchrone = new AsyncDBAcces(this, googleResultItemDao);
                 getdbAsynchrone.execute();
-
+                //Clear the data base
                 AsyncDBDelete delAsynchrone = new AsyncDBDelete(this, googleResultItemDao, list);
                 delAsynchrone.execute();
 

@@ -61,6 +61,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     //Used to parse the Json after the GET request
     private GoogleResult googleResult = new GoogleResult();
 
+    //Tag for the newInstance methods
     public static final String BUNDLE_PARAM_GOOGLERESULTITEM = "BUNDLE_PARAM_GOOGLERESULTITEM";
 
     private ArrayList<String> listAddresses;
@@ -126,7 +127,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
             }
         });
 
-
+        //set adapter to display the list googleResultArrayList
         listGoogleResults = (ListView) view.findViewById(R.id.listView);
         googleResultsAdapter = new Adapter(getContext(), googleResultArrayList, mListener);
         listGoogleResults.setAdapter(googleResultsAdapter);
@@ -171,6 +172,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
         mListener = null;
     }
 
+    //Button to switch between the different fragments/activities.
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -196,6 +198,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+    //Method to do the google custom research using the stringSearched parameter
     public void searchGoogleGETRequest(final String stringSearched){
         // We are using the Google Custom Search API to get the first 10 results of Google formatted in JSON
         String url = "https://www.googleapis.com/customsearch/v1?key=AIzaSyCvojZ4WyDacrj4-papbJrCFCcrIXf_Trk&cx=013421088620583939471:wcsjj9jp5ki&q="+stringSearched;
@@ -205,14 +208,18 @@ public class ListFragment extends Fragment implements View.OnClickListener{
                     @Override
                     public void onResponse(String response) {
                         Gson gson = new GsonBuilder().create();
+                        //copy of the result into a GoogleResult object
                         googleResult = gson.fromJson( response, GoogleResult.class);
                         ArrayList<GoogleResultItem> list = new ArrayList<>();
+                        //Get the GoogleResultItems returned by google
                         list = googleResult.getItems();
                         for( GoogleResultItem item : list)
                         {
+                            //Add the new item into the data base
                             item.setResearch(stringSearched);
                             mListener.addToBDDGoogleResultItem(item);
                         }
+                        //update and display the list found
                         updateList(list);
 
                     }
@@ -226,14 +233,17 @@ public class ListFragment extends Fragment implements View.OnClickListener{
         queue.add(stringRequest);
     }
 
+    //Method used to update and displayed list
     public void updateList(ArrayList<GoogleResultItem> list)
     {
+        //empty the list
         googleResultArrayList.clear();
+        //Add all the elements to be displayed one by one
         for(GoogleResultItem item :list)
         {
             googleResultArrayList.add(item);
         }
-        //googleResultArrayList = list;
+        //tell the adapter that the list has been modified
         if( googleResultsAdapter != null)
             googleResultsAdapter.notifyDataSetChanged();
 

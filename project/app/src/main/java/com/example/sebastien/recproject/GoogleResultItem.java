@@ -16,6 +16,7 @@ import java.io.Serializable;
  * Id : unique id for the data base
  * title : title of the item
  * displayLink : domain name
+ * research : the string used to do the researched in google
  */
 
 @DatabaseTable(tableName = "GoogleResults")

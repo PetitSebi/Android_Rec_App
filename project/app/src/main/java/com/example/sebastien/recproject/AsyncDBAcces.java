@@ -10,6 +10,9 @@ import java.util.List;
 
 /**
  * Created by Valentin on 18/11/2017.
+ *
+ * Description :
+ * Read the complete local data base and display the data base into the ListFragment
  */
 
 //Acces to the data base
@@ -34,7 +37,7 @@ public class AsyncDBAcces extends AsyncTask<Void, Integer, String> {
     protected String doInBackground(Void... arg0) {
         main.list = new ArrayList<GoogleResultItem>();
         try {
-            //int nb_bouteilles = bottleDao.countOf();
+            //get the whole data base at once
             List<GoogleResultItem> listQuery = daoGoogleResult.queryForAll();
             for( GoogleResultItem b:listQuery )
             {
@@ -52,6 +55,7 @@ public class AsyncDBAcces extends AsyncTask<Void, Integer, String> {
     }
 
     protected void onPostExecute(String result) {
+        //Display the data base in the ListFragment
         main.displayGoogleResultList();
     }
 

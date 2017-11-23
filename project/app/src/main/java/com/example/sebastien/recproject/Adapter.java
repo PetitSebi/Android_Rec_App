@@ -40,14 +40,16 @@ public class Adapter extends ArrayAdapter<GoogleResultItem> {
         {
             rootView = convertView;
         }
-
+        //Description of the link
         final TextView txvTitle = rootView.findViewById(R.id.title);
+        //Domain name
         TextView txvDisplayLink = rootView.findViewById(R.id.displayLink);
+        //String research in the google custom search
         TextView txvResearch = rootView.findViewById(R.id.research);
-
 
         GoogleResultItem googleResultItem = getItem(position);
 
+        //Display
         txvTitle.setText(googleResultItem.getTitle());
         txvDisplayLink.setText(googleResultItem.getLink());
         txvResearch.setText(googleResultItem.getResearch());

@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 /**
  * Created by Valentin on 20/11/2017.
+ *
+ * Description :
+ * Delete the whole local data base
  */
 
 public class AsyncDBDelete extends AsyncTask<Void, Integer, String> {
@@ -21,6 +24,7 @@ public class AsyncDBDelete extends AsyncTask<Void, Integer, String> {
     AsyncDBDelete(MainActivity main, Dao<GoogleResultItem, String> daoGoogleResult, ArrayList<GoogleResultItem> list) {
         this.main = main;
         this.daoGoogleResult = daoGoogleResult;
+        //Copy of the data base
         this.list = new ArrayList<GoogleResultItem>(list);
     }
 
@@ -30,7 +34,7 @@ public class AsyncDBDelete extends AsyncTask<Void, Integer, String> {
 
     @Override
     protected String doInBackground(Void... arg0) {
-        // Récupération avec l’id (=key)
+        // Delete the data base
         try {
             daoGoogleResult.delete(this.list);
 
@@ -45,7 +49,9 @@ public class AsyncDBDelete extends AsyncTask<Void, Integer, String> {
     }
 
     protected void onPostExecute(String result) {
+        //Empty the ArrayList of the MainActivity which is a copy of the data base
         main.list.clear();
+        //Update and display the ListFragment to show that list is empty
         main.displayGoogleResultList();
     }
 }
