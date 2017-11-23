@@ -73,11 +73,13 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         switch (item.getItemId()) {
             case R.id.actualiser:
                 //
+                AsyncDBAcces testAsynchrone = new AsyncDBAcces(this, googleResultItemDao);
+                testAsynchrone.execute();
                 return true;
             case R.id.options:
 
-                AsyncDBAcces testAsynchrone = new AsyncDBAcces(this, googleResultItemDao);
-                testAsynchrone.execute();
+                AsyncDBAcces getdbAsynchrone = new AsyncDBAcces(this, googleResultItemDao);
+                getdbAsynchrone.execute();
 
                 AsyncDBDelete delAsynchrone = new AsyncDBDelete(this, googleResultItemDao, list);
                 delAsynchrone.execute();
