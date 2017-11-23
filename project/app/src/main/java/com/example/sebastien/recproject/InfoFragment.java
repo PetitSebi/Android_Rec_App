@@ -82,7 +82,7 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
         buttonMap = (Button) view.findViewById(R.id.buttonMap);
         buttonMap.setOnClickListener(this);
 
-        // Set the source text
+        // Text to describe the application
         textInfo = (TextView) view.findViewById(R.id.textInfo);
         textInfo.setText("Infos générales sur l'application :\n" +
                 "L'application permet de rechercher le nom d'une entreprise sur Google et retourne les noms de domaine des 10 premiers résulats.\n" +
@@ -138,9 +138,10 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
                 mListener.callListFragment();
                 break;
             case R.id.buttonInfo :
+                // Don't do anything
                 break;
             case R.id.buttonMap :
-                //Call MapsActivity
+                // Don't do anything
                 break;
         }
     }

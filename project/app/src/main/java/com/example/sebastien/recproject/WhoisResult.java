@@ -6,6 +6,8 @@ import java.util.ArrayList;
  * Created by Sebastien on 18/11/2017.
  */
 
+// Class containing a list of contacts related to a specified domain name
+
 public class WhoisResult {
 
     private ArrayList<WhoisResultItem> contacts;

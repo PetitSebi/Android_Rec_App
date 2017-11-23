@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
 
     @Override
     public ArrayList<String> getListDomains() {
+        // get the domain names from the list of GoogleResultItem
         ArrayList<String> listDomains = new ArrayList<>();
         for(GoogleResultItem item: list){
             listDomains.add(item.getLink());
@@ -133,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
 
     @Override
     public void displayGoogleResult(ArrayList<GoogleResultItem> list) {
+        // Update the list to display and recall the ListFragment
         this.list = list;
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();

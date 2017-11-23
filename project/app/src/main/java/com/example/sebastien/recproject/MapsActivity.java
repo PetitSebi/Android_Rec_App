@@ -62,9 +62,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void geocodingRequest(String position){
-        // We are using the Geocoding API to convert the full_address to a coordinates
+        // We are using the Geocoding API to convert the full_address to coordinates
         String url = "https://maps.googleapis.com/maps/api/geocode/json?address="+position+"&key=AIzaSyDPTLi7pp4i37tr2RzsH0JBl_L5td6FyvQ";
-        // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
