@@ -23,8 +23,6 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
 
     public ArrayList<GoogleResultItem> list = new ArrayList<GoogleResultItem>();
 
-    private ListFragment listFragment;
-
 
 
     @Override
@@ -133,13 +131,10 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
     @Override
     public void displayGoogleResult(ArrayList<GoogleResultItem> list) {
         this.list = list;
-
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
         ListFragment listFragment = new ListFragment();
-
         listFragment.updateList(this.list);
-
         fragmentTransaction.replace(R.id.container, listFragment);
         fragmentTransaction.commit();
     }
@@ -161,7 +156,6 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
     public void callListFragment() {
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
-
         ListFragment listFragment = ListFragment.newInstance(list);
         fragmentTransaction.replace(R.id.container, listFragment);
         fragmentTransaction.commit();
@@ -180,9 +174,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         FragmentManager fragmentmanager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentmanager.beginTransaction();
         ListFragment listFragment = new ListFragment();
-
         listFragment.updateList(list);
-
         fragmentTransaction.replace(R.id.container, listFragment);
         fragmentTransaction.commit();
 

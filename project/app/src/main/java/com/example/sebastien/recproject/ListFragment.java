@@ -213,7 +213,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
                             item.setResearch(stringSearched);
                             mListener.addToBDDGoogleResultItem(item);
                         }
-                        mListener.displayGoogleResult(list);
+                        updateList(list);
 
                     }
                 }, new Response.ErrorListener() {
@@ -228,7 +228,12 @@ public class ListFragment extends Fragment implements View.OnClickListener{
 
     public void updateList(ArrayList<GoogleResultItem> list)
     {
-        googleResultArrayList = list;
+        googleResultArrayList.clear();
+        for(GoogleResultItem item :list)
+        {
+            googleResultArrayList.add(item);
+        }
+        //googleResultArrayList = list;
         if( googleResultsAdapter != null)
             googleResultsAdapter.notifyDataSetChanged();
 
