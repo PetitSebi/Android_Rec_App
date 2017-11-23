@@ -273,7 +273,15 @@ public class ListFragment extends Fragment implements View.OnClickListener{
 
     public ArrayList<String> whoisResultToListAddresses(WhoisResult whoisResult){
         // Get the list of contacts (a contact contains a type, a name, a phone, an address, an email, and an organization)
-        ArrayList<WhoisResultItem> contacts = whoisResult.getContacts();
+        ArrayList<WhoisResultItem> contacts;
+        // We check if a domain doesn't provide any information about it's contacts
+        if(whoisResult.getContacts() != null){
+            contacts = whoisResult.getContacts();
+        }
+        else{
+            contacts = new ArrayList<>();
+            contacts.add(new WhoisResultItem("","","","","",""));
+        }
         // Get the addresses for each contact in the list
         ArrayList<String> listAddresses = new ArrayList<>();
         for(WhoisResultItem item: contacts){

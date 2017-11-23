@@ -15,4 +15,8 @@ public class WhoisResult {
     }
 
     public ArrayList<WhoisResultItem> getContacts(){return  contacts;}
+
+    public void setContacts(ArrayList<WhoisResultItem> contacts){
+        this.contacts = contacts;
+    }
 }

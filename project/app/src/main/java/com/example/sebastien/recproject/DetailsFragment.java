@@ -160,6 +160,11 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
                         whoisResult = gson.fromJson( response, WhoisResult.class);
 
                         // Use of an ArrayAdapter to fill out the listView
+                        // We check if a domain doesn't provide any information about it's contacts
+                        if(whoisResult.getContacts() == null){
+                            ArrayList<WhoisResultItem> initListContacts = new ArrayList<>();
+                            whoisResult.setContacts(initListContacts);
+                        }
                         whoisAdapter = new WhoisAdapter(getContext(), whoisResult.getContacts(), mListener);
                         listView.setAdapter(whoisAdapter);
                     }
