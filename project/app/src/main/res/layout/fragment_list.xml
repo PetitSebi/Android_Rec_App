@@ -40,9 +40,10 @@
             android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawable="@color/gray"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="search" />
+            android:imeOptions="actionDone"
+            android:inputType="textPersonName" />
 
         <FrameLayout
             android:layout_width="match_parent"

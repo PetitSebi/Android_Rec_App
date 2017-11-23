@@ -109,8 +109,10 @@ public class ListFragment extends Fragment implements View.OnClickListener{
         buttonMap = (Button) view.findViewById(R.id.buttonMap);
         buttonMap.setOnClickListener(this);
 
-        // Edit Text to search information on Google
+        // Edit Text to search information on Google (erase "search" word when clicking the searchBar
         searchBar = (TextView) view.findViewById(R.id.searchBar);
+        searchBar.setOnClickListener(this);
+        searchBar.setText("Search");
         // Set an editorActionListener replacing a "search" button
         searchBar.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -139,10 +141,6 @@ public class ListFragment extends Fragment implements View.OnClickListener{
                 mListener.callDetailsFragment(googleItem);
             }
         });
-
-
-
-
         return view;
     }
 

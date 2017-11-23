@@ -2,7 +2,6 @@ package com.example.sebastien.recproject;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -37,7 +36,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         queue = Volley.newRequestQueue(this);
         // Get the list of physical addresses, and convert them into coordinates
         listAddresses = (ArrayList<String>) getIntent().getSerializableExtra("listAddresses");
-        Log.i("MAPS_ONCREATE_MMA",listAddresses.toString());
         addressesToCoordinates();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
