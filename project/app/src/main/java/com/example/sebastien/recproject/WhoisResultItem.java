@@ -4,6 +4,8 @@ package com.example.sebastien.recproject;
  * Created by Sebastien on 18/11/2017.
  */
 
+// Class gathering some information about each contact
+
 public class WhoisResultItem {
 
     private String type;
@@ -22,6 +24,7 @@ public class WhoisResultItem {
         this.full_address = full_address;
     }
 
+    // Getters
     public String getType(){ return type;}
     public String getName(){ return name;}
     public String getOrganization(){ return organization;}
