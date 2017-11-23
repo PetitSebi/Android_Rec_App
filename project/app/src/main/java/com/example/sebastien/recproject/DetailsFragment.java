@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -139,9 +138,8 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         // Convert WhoisAdapter to a list of addresse
-        ArrayList<String> listAddresses = whoisAdapterToListAddresses(whoisResult);
+        ArrayList<String> listAddresses = whoisResultToListAddresses(whoisResult);
         // Call MapsActivity
-        Log.i("DETAILS_ONCLICK_MMA",listAddresses.toString());
         mListener.callMapsActivity(listAddresses);
     }
 
@@ -175,7 +173,7 @@ public class DetailsFragment extends Fragment implements View.OnClickListener{
         queue.add(stringRequest);
     }
 
-    public ArrayList<String> whoisAdapterToListAddresses(WhoisResult whoisResult){
+    public ArrayList<String> whoisResultToListAddresses(WhoisResult whoisResult){
         // Get the list of contacts (a contact contains a type, a name, a phone, an address, an email, and an organization)
         ArrayList<WhoisResultItem> contacts = whoisResult.getContacts();
         // Get the addresses for each contact in the list

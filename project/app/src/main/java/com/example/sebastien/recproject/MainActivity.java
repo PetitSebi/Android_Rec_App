@@ -106,6 +106,15 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
     }
 
     @Override
+    public ArrayList<String> getListDomains() {
+        ArrayList<String> listDomains = new ArrayList<>();
+        for(GoogleResultItem item: list){
+            listDomains.add(item.getLink());
+        }
+        return listDomains;
+    }
+
+    @Override
     public void callMapsActivity(ArrayList<String> listAddresses) {
         Intent intent = new Intent(this, MapsActivity.class);
         // Transfer a list of physical addresses to the MapsActivity

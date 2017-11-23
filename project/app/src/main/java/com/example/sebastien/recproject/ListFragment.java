@@ -24,6 +24,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -46,6 +48,10 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     //Search field
     private TextView searchBar;
 
+    // We count the number of domains to be sure that we call the Map when all the domains have been processed
+    private int countDomains = 0;
+    private ArrayList<String> listDomains;
+
 
     //ListView with a Recycler
     private ListView listGoogleResults;
@@ -57,7 +63,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
 
     public static final String BUNDLE_PARAM_GOOGLERESULTITEM = "BUNDLE_PARAM_GOOGLERESULTITEM";
 
-
+    private ArrayList<String> listAddresses;
     private RequestQueue queue;
 
     public ListFragment() {
@@ -178,12 +184,19 @@ public class ListFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.buttonMap :
                 //Call MapsActivity
-                ArrayList<String> list = new ArrayList<>();
-                mListener.callMapsActivity(list);
+                listDomains = mListener.getListDomains();
+                getAddressesFromDomains(listDomains);
                 break;
         }
     }
 
+
+    public void getAddressesFromDomains(ArrayList<String> listDomains){
+        listAddresses = new ArrayList<>();
+        for(String domain : listDomains){
+            whoisRequest(domain);
+        }
+    }
 
     public void searchGoogleGETRequest(final String stringSearched){
         // We are using the Google Custom Search API to get the first 10 results of Google formatted in JSON
@@ -223,6 +236,56 @@ public class ListFragment extends Fragment implements View.OnClickListener{
 
     }
 
+    public void whoisRequest(String domain){
+        // We are using the Whois API to gather information about the targeted domain
+        String url = "http://api.whoapi.com/?apikey=a0a4b7e8e99083730033e34df1db4efc&r=whois&domain="+domain+"&ip=";
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Get the JSON file from WhoisAPI and put it into an Object "whoisResult"
+                        Gson gson = new GsonBuilder().create();
+                        WhoisResult whoisResult = gson.fromJson( response, WhoisResult.class);
+                        ArrayList<String> list = whoisResultToListAddresses(whoisResult);
+                        // Concatenate the new addresses with the list of addresses
+                        listAddresses.addAll(list);
+                        // Loop until all the domains are processed
+                        // When it's done, call the MapActivity with the full list of addresses as a parameter
+                        countDomains += 1;
+                        if(countDomains==listDomains.size()){
+                            // The last domain has been processed, we can call the MapActivity
+                            mListener.callMapsActivity(listAddresses);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Todo
+            }
+        });
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+    public ArrayList<String> whoisResultToListAddresses(WhoisResult whoisResult){
+        // Get the list of contacts (a contact contains a type, a name, a phone, an address, an email, and an organization)
+        ArrayList<WhoisResultItem> contacts = whoisResult.getContacts();
+        // Get the addresses for each contact in the list
+        ArrayList<String> listAddresses = new ArrayList<>();
+        for(WhoisResultItem item: contacts){
+            if(!item.getFull_address().equals("")){
+                // We need to remove the spaces before sending the request
+                listAddresses.add(item.getFull_address().replace(" ","+").replace(",",""));
+                // Remove the addresses that appear multiple times
+                Set set = new HashSet() ;
+                set.addAll(listAddresses) ;
+                listAddresses = null;
+                listAddresses = new ArrayList(set) ;
+            }
+        }
+        return listAddresses;
+    }
 
 
     /**
@@ -237,6 +300,7 @@ public class ListFragment extends Fragment implements View.OnClickListener{
      */
     public interface OnFragmentInteractionListener {
         void callInfoFragment();
+        ArrayList<String> getListDomains();
         void callMapsActivity(ArrayList<String> listAddresses);
         void addToBDDGoogleResultItem(GoogleResultItem item);
         void displayGoogleResult(ArrayList<GoogleResultItem> list);

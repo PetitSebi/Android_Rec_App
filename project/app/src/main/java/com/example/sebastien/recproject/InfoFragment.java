@@ -84,7 +84,24 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
 
         // Set the source text
         textInfo = (TextView) view.findViewById(R.id.textInfo);
-        textInfo.setText("Infos à placer ici !");
+        textInfo.setText("Infos générales sur l'application :\n" +
+                "L'application permet de rechercher le nom d'une entreprise sur Google et retourne les noms de domaine des 10 premiers résulats.\n" +
+                "En cliquant sur l'un des résultats, une recherche est effectuée via l'API WhoAPI qui retourne les informations publiques sur le domaine ciblé.\n" +
+                "En cliquant sur le bouton 'Map' dans la fenêtre Détails, on peut localiser l'entreprise disposant du nom de domaine ciblé.\n" +
+                "Si on clique sur le bouton 'Map' directement à partir de la liste, on localise l'ensemble des domaines de la liste.\n" +
+                "\n" +
+                "Le bouton 'actualiser' raffraichit l'affichage des données à partir de la base de données locale.\n" +
+                "Dans le menu 'option' il est possible de supprimer l'historique de la base de données locale.\n\n" +
+                "API Google Custom Search :\n" +
+                "   - https://www.googleapis.com/customsearch/v1?key=API_KEY&cx=searchEngine&q=stringsearched\n" +
+                "API Whois :\n" +
+                "   - http://api.whoapi.com/?apikey=API_KEY&r=whois&domain=domain&ip=\n" +
+                "API Google Map :\n" +
+                "   - https://maps.googleapis.com/maps/api/geocode/json?address=position&key=API_KEY" +
+                "\n" +
+                "Les termes d'utilisation de ces API sont disponibles sur :\n" +
+                "   - https://whoapi.com/page/terms_of_use\n" +
+                "   - https://developers.google.com/terms");
 
         return view;
     }
